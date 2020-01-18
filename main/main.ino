@@ -76,7 +76,7 @@ void loop() {
       pumpOutState();
       break;
     case DOSING:
-      offState(); // TODO
+      dosingState();
       break;
     default:
       offState();
