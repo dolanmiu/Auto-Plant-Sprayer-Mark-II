@@ -21,9 +21,9 @@ const int DOSING_PUMP = 7;
 // End Electric Relays
 
 const int CYCLE_BUTTON = 8;
-const int WATER_IN_BUTTON = 9; // 9
-const int WATER_OUT_BUTTON = 10; // 10
-const int DOSING_BUTTON = 8;
+const int WATER_IN_BUTTON = 9;
+const int WATER_OUT_BUTTON = 10;
+const int DOSING_BUTTON = 11;
 const int STOP_BUTTON = 12;
 
 enum STATE_ENUM {CYCLE, OFF, PUMP_IN, PUMP_OUT, DOSING};
