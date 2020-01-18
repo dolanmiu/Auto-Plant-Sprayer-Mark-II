@@ -1,26 +1,26 @@
-void pumpOutState() {
-  openValves();
+void dosingState() {
+  closeValves();
   setWaterRelayToRemoveWater();
-  turnOnPump();
-  turnOffDosingPump();
+  turnOffPump();
+  turnOnDosingPump();
 
-  drawPumpOutText();
-  checkIfPumpOutNeedsToStop();
+  drawDosingText();
+  checkIfDosingNeedsToStop();
 }
 
-void checkIfPumpOutNeedsToStop() {
+void checkIfDosingNeedsToStop() {
   int val = digitalRead(WATER_OUT_BUTTON);
   if (val == 1) {
     state = OFF;
   }
 }
 
-void drawPumpOutText() {
+void drawDosingText() {
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
-  display.println("Pumping Out Water");
+  display.println("Dosing");
   display.setCursor(62, 15);
   display.setTextSize(2);
   display.println(createLoadingSpinner());

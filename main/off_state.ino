@@ -1,8 +1,8 @@
 
 void offState() {
-  long timeLeft = nextCycleStartTimeMillis - millis();
+  const long timeLeft = nextCycleStartTimeMillis - millis();
   if (timeLeft > 0) {
-    displayText("Idle. Next Cycle in: " + timeToString(timeLeft));
+    drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft));
   } else {
     displayText("Idle. Cycle should be happening by now");
   }
@@ -13,13 +13,31 @@ void offState() {
   turnOffDosingPump();
 }
 
-String timeToString(long t) {
-  static char str[12];
+String timeToString(const long t) {
+  const char str[12];
 
-  long hours = floor(t / MILLIS_PER_HOUR);
-  long mins = floor((t % MILLIS_PER_HOUR) / MILLIS_PER_MINUTE);
-  long secs = floor((t % MILLIS_PER_MINUTE) / MILLIS_PER_SECOND);
+  const long hours = floor(t / MILLIS_PER_HOUR);
+  const long mins = floor((t % MILLIS_PER_HOUR) / MILLIS_PER_MINUTE);
+  const long secs = floor((t % MILLIS_PER_MINUTE) / MILLIS_PER_SECOND);
+  const long milliSecs = t % 1000;
 
-  sprintf(str, "%02ld:%02ld:%02ld", hours, mins, secs);
+  const bool isBlink = milliSecs > 500;
+  const char* timeFormat = isBlink ? "%02ld:%02ld:%02ld" : "%02ld %02ld %02ld";
+  
+  sprintf(str, timeFormat, hours, mins, secs);
   return str;
 }
+
+void drawOffText(const String text, const String t) {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println(text);
+  display.setCursor(15, 15);
+  display.setTextSize(2);
+  display.println(t);
+
+  display.display();
+}
+

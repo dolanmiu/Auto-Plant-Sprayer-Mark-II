@@ -1,3 +1,9 @@
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+const Adafruit_SSD1306 display(128, 32, &Wire, -1);
+
 const unsigned long MILLIS_PER_MINUTE = 60000L;
 const unsigned long MILLIS_PER_DAY = 86400000L;
 const unsigned long MILLIS_PER_HOUR = 3600000L;
@@ -15,9 +21,9 @@ const int DOSING_PUMP = 7;
 // End Electric Relays
 
 const int CYCLE_BUTTON = 8;
-const int WATER_IN_BUTTON = 9;
-const int WATER_OUT_BUTTON = 10;
-const int DOSING_BUTTON = 11;
+const int WATER_IN_BUTTON = 9; // 9
+const int WATER_OUT_BUTTON = 10; // 10
+const int DOSING_BUTTON = 8;
 const int STOP_BUTTON = 12;
 
 enum STATE_ENUM {CYCLE, OFF, PUMP_IN, PUMP_OUT, DOSING};
