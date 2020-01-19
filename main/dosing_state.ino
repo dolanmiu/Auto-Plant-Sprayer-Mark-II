@@ -9,7 +9,7 @@ void dosingState() {
 }
 
 void checkIfDosingNeedsToStop() {
-  int val = digitalRead(WATER_OUT_BUTTON);
+  int val = digitalRead(DOSING_BUTTON);
   if (val == 1) {
     state = OFF;
   }

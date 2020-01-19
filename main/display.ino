@@ -1,13 +1,3 @@
-void displayText(const String text) {
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0, 0);
-
-  display.println(text);
-  display.display();
-}
-
 String createLoadingSpinner() {
   const long milliSecs = millis() % 1000;
   String loadingChar;

@@ -1,11 +1,8 @@
 
 void offState() {
-  const long timeLeft = nextCycleStartTimeMillis - millis();
-  if (timeLeft > 0) {
-    drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft));
-  } else {
-    displayText("Idle. Cycle should be happening by now");
-  }
+  const long timeLeft = NEXT_CYCLE_START_MILLIS - getSystemTime();
+
+  drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft));
 
   closeValves();
   turnOffPump();
@@ -23,7 +20,7 @@ String timeToString(const long t) {
 
   const bool isBlink = milliSecs > 500;
   const char* timeFormat = isBlink ? "%02ld:%02ld:%02ld" : "%02ld %02ld %02ld";
-  
+
   sprintf(str, timeFormat, hours, mins, secs);
   return str;
 }
@@ -40,4 +37,3 @@ void drawOffText(const String text, const String t) {
 
   display.display();
 }
-

@@ -26,11 +26,12 @@ const int WATER_OUT_BUTTON = 10;
 const int DOSING_BUTTON = 11;
 const int STOP_BUTTON = 12;
 
+const unsigned long NEXT_CYCLE_START_MILLIS = MILLIS_PER_DAY;
+
 enum STATE_ENUM {CYCLE, OFF, PUMP_IN, PUMP_OUT, DOSING};
 
 // Global Variables
 uint8_t state = OFF;
-unsigned long nextCycleStartTimeMillis = millis() + MILLIS_PER_DAY;
 
 
 void setup() {
@@ -62,6 +63,8 @@ void setup() {
 }
 
 void loop() {
+  tickTime();
+  
   switch (state) {
     case OFF:
       offState();
@@ -88,7 +91,7 @@ void loop() {
 }
 
 void checkIfNeedToCycle() {
-  long timeLeft = nextCycleStartTimeMillis - millis();
+  long timeLeft = NEXT_CYCLE_START_MILLIS - getSystemTime();
 
   if (timeLeft < 0) {
     state = CYCLE;

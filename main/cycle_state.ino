@@ -7,14 +7,14 @@ bool isFirstCycleStart = true;
 
 void cycleState() {
   if (isFirstCycleStart) {
-    startOfCycleMillis = millis();
-    nextCycleStartTimeMillis = startOfCycleMillis + MILLIS_PER_DAY;
+    startOfCycleMillis = getSystemTime();
+    resetTime();
     isFirstCycleStart = false;
   }
 
   turnOffDosingPump();
 
-  const unsigned long currentMillis = millis();
+  const unsigned long currentMillis = getSystemTime();
   const unsigned long delta = currentMillis - startOfCycleMillis;
 
   if (delta < CYCLE_HALF_DURATION) {
