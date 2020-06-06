@@ -1,13 +1,11 @@
 
 void offState() {
   const long timeLeft = NEXT_CYCLE_START_MILLIS - getSystemTime();
+  const unsigned long interval = calculateIntervalTime();
+  drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft), formatIntervalTime(interval));
 
-  drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft));
-
-  closeValves();
   turnOffPump();
-  setWaterRelayToRemoveWater();
-  turnOffDosingPump();
+  checkIfNeedToCycle();
 }
 
 String timeToString(const long t) {
@@ -25,15 +23,30 @@ String timeToString(const long t) {
   return str;
 }
 
-void drawOffText(const String text, const String t) {
+void drawOffText(const String text, const String t, const String intervalText) {
   display.clearDisplay();
-  display.setTextSize(1);
   display.setTextColor(WHITE);
+  display.setTextSize(1);
   display.setCursor(0, 0);
-  display.println(text);
-  display.setCursor(15, 15);
+  display.println("Next:");
+  display.setCursor(32, 0);
   display.setTextSize(2);
   display.println(t);
+  
+  display.setCursor(0, 18);
+  display.setTextSize(1);
+  display.println("Freq:");
+  display.setCursor(32, 18);
+  display.setTextSize(2);
+  display.println(intervalText);
 
   display.display();
+}
+
+void checkIfNeedToCycle() {
+  const long timeLeft = NEXT_CYCLE_START_MILLIS - getSystemTime();
+
+  if (timeLeft < 0) {
+    state = CYCLE;
+  }
 }

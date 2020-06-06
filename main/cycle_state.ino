@@ -1,38 +1,28 @@
 const unsigned long CYCLE_DURATION = 10000L;
-const unsigned long CYCLE_HALF_DURATION = CYCLE_DURATION / 2;
-
-unsigned long startOfCycleMillis = 0;
+const unsigned long CYCLE_HALF_DURATION = 3000L;
 
 bool isFirstCycleStart = true;
 
 void cycleState() {
   if (isFirstCycleStart) {
-    startOfCycleMillis = getSystemTime();
     resetTime();
     isFirstCycleStart = false;
   }
 
-  turnOffDosingPump();
-
-  const unsigned long currentMillis = getSystemTime();
-  const unsigned long delta = currentMillis - startOfCycleMillis;
+  const unsigned long delta = getSystemTime();
 
   if (delta < CYCLE_HALF_DURATION) {
-    drawCycleText("Pumping water in", (float)delta / (float)CYCLE_HALF_DURATION);
-    openValves();
-    setWaterRelayToRemoveWater();
+    drawCycleText("Spraying water...", (float)delta / (float)CYCLE_DURATION);
     turnOnPump();
   } else if (delta < CYCLE_DURATION) {
-    drawCycleText("Pumping water out", (float)(delta - CYCLE_HALF_DURATION) / (float)CYCLE_HALF_DURATION);
-    openValves();
-    setWaterRelayToAddWater();
-    turnOnPump();
+    drawCycleText("Cooling off...", (float)delta / (float)CYCLE_DURATION);
+    turnOffPump();
   } else {
     // Finished
     turnOffPump();
-    closeValves();
     state = OFF;
     isFirstCycleStart = true;
+    setCycleStartTime();
   }
 }
 
@@ -42,8 +32,8 @@ void drawCycleText(const String text, const float ratio) {
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
 
-  display.println("Cycling. ");
-  display.println("Pumping water in");
+  display.println("Running....");
+  display.println(text);
   const int margin = 3;
   const int yPosition = 18;
   const int height = 14;
