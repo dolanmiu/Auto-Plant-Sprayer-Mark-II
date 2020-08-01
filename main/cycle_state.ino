@@ -1,5 +1,5 @@
-const unsigned long CYCLE_DURATION = 10000L;
-const unsigned long CYCLE_HALF_DURATION = 3000L;
+const unsigned long CYCLE_DURATION = 23000L;
+const unsigned long CYCLE_HALF_DURATION = 20000L;
 
 bool isFirstCycleStart = true;
 
