@@ -2,6 +2,7 @@
 void offState() {
   const long timeLeft = NEXT_CYCLE_START_MILLIS - getSystemTime();
   const unsigned long interval = calculateIntervalTime();
+  const unsigned long dayNight = calculateDayNight();
   drawOffText("Idle. Next Cycle in: ", timeToString(timeLeft), formatIntervalTime(interval));
 
   turnOffPump();
@@ -28,11 +29,13 @@ void drawOffText(const String text, const String t, const String intervalText) {
   display.setTextColor(WHITE);
   display.setTextSize(1);
   display.setCursor(0, 0);
-  display.println("Next:");
+
+  display.drawBitmap(0, 0, day_bmp, DAY_NIGHT_WIDTH, DAY_NIGHT_HEIGHT, 1);
+
   display.setCursor(32, 0);
   display.setTextSize(2);
   display.println(t);
-  
+
   display.setCursor(0, 18);
   display.setTextSize(1);
   display.println("Freq:");

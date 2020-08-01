@@ -1,3 +1,6 @@
+#include <Adafruit_SSD1306.h>
+#include <splash.h>
+
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -17,6 +20,8 @@ const int CYCLE_BUTTON = 8;
 
 const int DURATION_DIAL = A3;
 
+const int LIGHT_SENSOR = A0;
+
 unsigned long NEXT_CYCLE_START_MILLIS = MILLIS_PER_DAY;
 
 enum STATE_ENUM {CYCLE, OFF};
@@ -34,6 +39,8 @@ void setup() {
   pinMode(DURATION_DIAL, INPUT);
 
   pinMode(WATER_PUMP, OUTPUT);
+  
+  pinMode(LIGHT_SENSOR, INPUT);
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
