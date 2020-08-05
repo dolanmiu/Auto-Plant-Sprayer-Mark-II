@@ -18,13 +18,15 @@ const int WATER_PUMP = 7;
 
 const int CYCLE_BUTTON = 8;
 
+const int DISPLAY_BUTTON = 6;
+
 const int DURATION_DIAL = A3;
 
 const int LIGHT_SENSOR = A0;
 
 unsigned long NEXT_CYCLE_START_MILLIS = MILLIS_PER_DAY;
 
-enum STATE_ENUM {CYCLE, OFF};
+enum STATE_ENUM {CYCLE, OFF, NIGHT};
 
 // Global Variables
 uint8_t state = OFF;
@@ -35,6 +37,8 @@ void setup() {
 
   pinMode(CYCLE_BUTTON, INPUT);
   digitalWrite(CYCLE_BUTTON, HIGH);
+
+  pinMode(DISPLAY_BUTTON, INPUT);
 
   pinMode(DURATION_DIAL, INPUT);
 
@@ -53,6 +57,9 @@ void loop() {
   switch (state) {
     case CYCLE:
       cycleState();
+      break;
+    case NIGHT:
+      nightState();
       break;
     case OFF:
     default:
