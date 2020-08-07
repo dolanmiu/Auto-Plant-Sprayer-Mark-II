@@ -26,7 +26,7 @@ void drawNightText(const  unsigned long dayNight) {
 }
 
 void checkIfNeedToGoOff(const unsigned long dayNight) {
-  if (dayNight < 800) {
+  if (dayNight <= 300) {
     state = OFF;
   }
 }

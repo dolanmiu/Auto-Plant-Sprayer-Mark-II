@@ -59,7 +59,7 @@ void checkIfNeedToCycle() {
 }
 
 void checkIfNeedToGoNight(const unsigned long dayNight) {
-  if (dayNight > 800) {
+  if (dayNight > 300) {
     state = NIGHT;
   }
 }
