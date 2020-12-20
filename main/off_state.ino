@@ -8,6 +8,7 @@ void offState() {
   turnOffPump();
   checkIfNeedToCycle();
   checkIfNeedToGoNight(dayNight);
+  checkIfNeedToPowerDown();
 }
 
 String timeToString(const long t) {
@@ -61,6 +62,13 @@ void checkIfNeedToCycle() {
 void checkIfNeedToGoNight(const unsigned long dayNight) {
   if (dayNight > 300) {
     state = NIGHT;
+  }
+}
+
+void checkIfNeedToPowerDown() {
+  const bool power = getPowerSwitch();
+  if (power == false) {
+    state = POWER_DOWN;
   }
 }
 

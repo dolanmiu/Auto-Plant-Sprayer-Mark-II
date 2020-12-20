@@ -6,7 +6,7 @@ void nightState() {
   checkIfNeedToGoOff(dayNight);
 }
 
-void drawNightText(const  unsigned long dayNight) {
+void drawNightText(const unsigned long dayNight) {
   display.clearDisplay();
 
   if (checkIfDisplayIsOn()) {

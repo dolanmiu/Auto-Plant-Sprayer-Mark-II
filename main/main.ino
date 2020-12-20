@@ -20,13 +20,15 @@ const int CYCLE_BUTTON = 8;
 
 const int DISPLAY_BUTTON = 6;
 
+const int ON_OFF_SWITCH = 9;
+
 const int DURATION_DIAL = A3;
 
 const int LIGHT_SENSOR = A0;
 
 unsigned long NEXT_CYCLE_START_MILLIS = MILLIS_PER_DAY;
 
-enum STATE_ENUM {CYCLE, OFF, NIGHT};
+enum STATE_ENUM {CYCLE, OFF, NIGHT, POWER_DOWN};
 
 // Global Variables
 uint8_t state = OFF;
@@ -39,6 +41,8 @@ void setup() {
   digitalWrite(CYCLE_BUTTON, HIGH);
 
   pinMode(DISPLAY_BUTTON, INPUT);
+
+  pinMode(ON_OFF_SWITCH, INPUT);
 
   pinMode(DURATION_DIAL, INPUT);
 
@@ -60,6 +64,9 @@ void loop() {
       break;
     case NIGHT:
       nightState();
+      break;
+    case POWER_DOWN:
+      powerDownState();
       break;
     case OFF:
     default:
