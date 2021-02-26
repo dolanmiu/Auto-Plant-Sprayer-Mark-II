@@ -43,6 +43,7 @@ void setup() {
   pinMode(DISPLAY_BUTTON, INPUT);
 
   pinMode(ON_OFF_SWITCH, INPUT);
+  digitalWrite(ON_OFF_SWITCH, HIGH);
 
   pinMode(DURATION_DIAL, INPUT);
 

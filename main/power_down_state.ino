@@ -14,9 +14,9 @@ void drawPowerDownText() {
   if (checkIfDisplayIsOn()) {
     display.setTextColor(WHITE);
 
-    display.drawBitmap(20, 12, off_bmp, DAY_NIGHT_WIDTH, DAY_NIGHT_HEIGHT, 1);
+    display.drawBitmap(28, 12, off_bmp, DAY_NIGHT_WIDTH, DAY_NIGHT_HEIGHT, 1);
 
-    display.setCursor(44, 13);
+    display.setCursor(50, 13);
     display.setTextSize(2);
     display.println("Off");
   }
