@@ -10,7 +10,7 @@ const long DISPLAY_ON_DURATION = 3000;
 bool checkIfDisplayIsOn() {
   const int displayButton = digitalRead(DISPLAY_BUTTON);
 
-  if (displayState == DISPLAY_ON) {
+  if (displayState == LOW) {
     displayOnCount += 10;
     if (displayOnCount > DISPLAY_ON_DURATION) {
       displayOnCount = 0;

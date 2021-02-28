@@ -31,7 +31,7 @@ unsigned long NEXT_CYCLE_START_MILLIS = MILLIS_PER_DAY;
 enum STATE_ENUM {CYCLE, OFF, NIGHT, POWER_DOWN};
 
 // Global Variables
-uint8_t state = OFF;
+uint8_t state = CYCLE;
 
 
 void setup() {
