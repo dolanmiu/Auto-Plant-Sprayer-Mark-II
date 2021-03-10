@@ -19,10 +19,10 @@ void cycleState() {
     turnOffPump();
   } else {
     // Finished
+    setCycleStartTime();
     turnOffPump();
     state = OFF;
     isFirstCycleStart = true;
-    setCycleStartTime();
   }
 }
 
