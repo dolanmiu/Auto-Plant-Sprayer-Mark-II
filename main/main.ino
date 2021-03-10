@@ -86,8 +86,8 @@ void readInputs() {
 }
 
 void setCycleStartTime() {
-  NEXT_CYCLE_START_MILLIS = calculateIntervalTime() * MILLIS_PER_MINUTE;
   Serial.println("Setting next start time:");
+  NEXT_CYCLE_START_MILLIS = calculateIntervalTime() * MILLIS_PER_MINUTE;
   Serial.println(NEXT_CYCLE_START_MILLIS);
 }
 
