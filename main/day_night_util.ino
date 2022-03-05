@@ -5,6 +5,7 @@ int dayNightSensorRingBuffer[DAY_NIGHT_BUFFER_SIZE] = {};
 // memset(dayNightSensorRingBuffer, analogRead(LIGHT_SENSOR), DAY_NIGHT_BUFFER_SIZE);
 
 unsigned long calculateDayNight() {
+  return 0;
   const int dayNightValue = analogRead(LIGHT_SENSOR);
 
   dayNightSensorRingBuffer[dayNightRingBufferIndex] = dayNightValue;

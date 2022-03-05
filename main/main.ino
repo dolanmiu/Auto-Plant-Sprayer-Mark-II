@@ -49,7 +49,7 @@ void setup() {
 
   pinMode(WATER_PUMP, OUTPUT);
   
-  pinMode(LIGHT_SENSOR, INPUT);
+  // pinMode(LIGHT_SENSOR, INPUT);
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
