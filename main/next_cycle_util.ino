@@ -1,5 +1,3 @@
-unsigned long smoothedPotValue = 0;
-
 unsigned long calculateIntervalTime() {
   const int potValue = analogRead(DURATION_DIAL);
 

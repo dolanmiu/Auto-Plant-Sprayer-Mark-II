@@ -32,7 +32,7 @@ enum STATE_ENUM {CYCLE, OFF, NIGHT, POWER_DOWN};
 
 // Global Variables
 uint8_t state = OFF;
-
+unsigned long smoothedPotValue = analogRead(DURATION_DIAL);
 
 void setup() {
   Serial.begin(9600);
@@ -53,6 +53,9 @@ void setup() {
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
+  // Hack to allow time for pot to initialise
+  delay(3000);
+  smoothedPotValue = analogRead(DURATION_DIAL);
   setCycleStartTime();
 }
 
