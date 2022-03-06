@@ -6,9 +6,9 @@ unsigned long calculateIntervalTime() {
   smoothedPotValue += delta;
   constrain(smoothedPotValue, 0, 1023);
 
-  const int mins = map(smoothedPotValue, 0, 1023, 1, (MINS_PER_HOUR * 2) + 1);
+  const int mins = map(smoothedPotValue, 0, 1023, 1, (MINS_PER_HOUR * 8) + 1);
 
-  if (mins > 114L) {
+  if (mins > 360L) {
     return MINS_PER_DAY;
   }
 
